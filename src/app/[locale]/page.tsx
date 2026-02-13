@@ -6,8 +6,11 @@ import { SearchBar } from '@/components/SearchBar';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { WebsiteJsonLd, ItemListJsonLd } from '@/components/JsonLd';
 import { categories } from '@/data/categories';
 import { getFeaturedSkills, getPopularSkills, skills } from '@/data/skills';
+
+const siteUrl = 'https://skillhub-teal.vercel.app';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -42,6 +45,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <WebsiteJsonLd
+        url={siteUrl}
+        name="SkillHub - AI Agent Skills Marketplace"
+        description="Discover and install 150+ AI Agent skills. Add new capabilities to your OpenClaw Agent with one click."
+      />
+      <ItemListJsonLd
+        name="Featured AI Agent Skills"
+        description="Top-rated skills for OpenClaw AI agents"
+        items={featuredSkills.map((skill, index) => ({
+          name: skill.name,
+          url: `${siteUrl}/en/skills/${skill.slug}`,
+          position: index + 1,
+        }))}
+      />
       <Header />
 
       {/* Hero - Cleaner */}

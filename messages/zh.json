@@ -106,5 +106,37 @@
     "about": "关于",
     "docs": "文档",
     "copyright": "© 2026 SkillHub. Built for the AI Agent community."
+  },
+  "submit": {
+    "title": "提交你的 Skill",
+    "subtitle": "分享你的 Skill 给社区，让更多人发现和使用",
+    "form": {
+      "name": "Skill 名称",
+      "namePlaceholder": "例如：天气助手",
+      "description": "描述",
+      "descriptionPlaceholder": "描述你的 Skill 功能和主要特性...",
+      "category": "分类",
+      "categoryPlaceholder": "选择一个分类",
+      "githubUrl": "GitHub 链接",
+      "githubPlaceholder": "https://github.com/username/repo",
+      "author": "作者",
+      "authorPlaceholder": "你的名字或 GitHub 用户名",
+      "submit": "提交 Skill",
+      "note": "提交后，我们的团队将在 1-2 个工作日内审核你的 Skill。"
+    },
+    "errors": {
+      "nameRequired": "请输入 Skill 名称",
+      "descriptionRequired": "请输入描述",
+      "categoryRequired": "请选择一个分类",
+      "githubRequired": "请输入 GitHub 链接",
+      "githubInvalid": "请输入有效的 GitHub 链接",
+      "authorRequired": "请输入作者名称"
+    },
+    "success": {
+      "title": "感谢提交！",
+      "message": "你的 Skill 已成功提交。我们会尽快审核并回复你。",
+      "submitted": "提交信息：",
+      "backHome": "返回首页"
+    }
   }
 }
