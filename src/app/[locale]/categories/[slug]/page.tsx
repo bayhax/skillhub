@@ -2,8 +2,10 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { SkillCard } from '@/components/SkillCard';
 import { SearchBar } from '@/components/SearchBar';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { categories, getCategoryBySlug } from '@/data/categories';
 import { getSkillsByCategory, skills } from '@/data/skills';
 
@@ -12,20 +14,43 @@ export default function CategoryPage() {
   const slug = params.slug as string;
   const category = getCategoryBySlug(slug);
   const categorySkills = getSkillsByCategory(slug);
+  
+  const t = useTranslations('skills');
+  const tNav = useTranslations('nav');
+  const tCat = useTranslations('category');
+  const tCommon = useTranslations('common');
+  const tFooter = useTranslations('footer');
+  const tHome = useTranslations('home');
+
+  // Map slug to translation key
+  const slugToKey: Record<string, string> = {
+    'productivity': 'productivity',
+    'development': 'development',
+    'data': 'data',
+    'creative': 'creative',
+    'information': 'information',
+    'automation': 'automation',
+    'finance': 'finance',
+    'communication': 'communication',
+    'smart-home': 'smartHome',
+    'entertainment': 'entertainment',
+  };
 
   if (!category) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-8">分类不存在</p>
+          <p className="text-gray-600 dark:text-gray-400 mb-8">Category {tCommon('notFound')}</p>
           <Link href="/" className="text-blue-600 hover:text-blue-700">
-            返回首页 →
+            {tCommon('backHome')}
           </Link>
         </div>
       </div>
     );
   }
+
+  const catKey = slugToKey[category.slug] || category.slug;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -36,12 +61,13 @@ export default function CategoryPage() {
             <span className="text-2xl">🛠️</span>
             <span className="text-xl font-bold text-gray-900 dark:text-white">SkillHub</span>
           </Link>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-4">
+            <LanguageSwitcher />
             <Link href="/skills" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              浏览 Skills
+              {tNav('browseSkills')}
             </Link>
             <Link href="/submit" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition">
-              提交 Skill
+              {tNav('submitSkill')}
             </Link>
           </nav>
         </div>
@@ -51,22 +77,22 @@ export default function CategoryPage() {
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 py-8">
         <div className="max-w-7xl mx-auto px-4">
           <nav className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-            <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-200">首页</Link>
+            <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-200">Home</Link>
             <span className="mx-2">/</span>
             <Link href="/skills" className="hover:text-gray-700 dark:hover:text-gray-200">Skills</Link>
             <span className="mx-2">/</span>
-            <span className="text-gray-900 dark:text-white">{category.name}</span>
+            <span className="text-gray-900 dark:text-white">{tCat(catKey)}</span>
           </nav>
           <div className="flex items-center gap-4 mb-4">
             <span className="text-4xl">{category.icon}</span>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                {category.name}
+                {tCat(catKey)}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">{category.description}</p>
+              <p className="text-gray-600 dark:text-gray-400">{tCat(`${catKey}Desc`)}</p>
             </div>
           </div>
-          <SearchBar placeholder={`在 ${category.name} 中搜索...`} />
+          <SearchBar placeholder={tHome('searchPlaceholder')} />
         </div>
       </div>
 
@@ -75,20 +101,21 @@ export default function CategoryPage() {
           {/* Sidebar - Categories */}
           <aside className="lg:col-span-1">
             <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 sticky top-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">分类筛选</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t('filterByCategory')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link 
                     href="/skills"
                     className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                   >
-                    <span>全部</span>
+                    <span>{t('all')}</span>
                     <span className="text-sm">{skills.length}</span>
                   </Link>
                 </li>
                 {categories.map(cat => {
                   const count = skills.filter(s => s.category === cat.slug).length;
                   const isActive = cat.slug === slug;
+                  const key = slugToKey[cat.slug] || cat.slug;
                   return (
                     <li key={cat.id}>
                       <Link 
@@ -99,7 +126,7 @@ export default function CategoryPage() {
                             : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
                         }`}
                       >
-                        <span>{cat.icon} {cat.name}</span>
+                        <span>{cat.icon} {tCat(key)}</span>
                         <span className="text-sm">{count}</span>
                       </Link>
                     </li>
@@ -113,12 +140,12 @@ export default function CategoryPage() {
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-6">
               <p className="text-gray-600 dark:text-gray-400">
-                共 {categorySkills.length} 个 Skills
+                {t('totalSkills', { count: categorySkills.length })}
               </p>
               <select className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm">
-                <option value="popular">按热度排序</option>
-                <option value="recent">按最新排序</option>
-                <option value="rating">按评分排序</option>
+                <option value="popular">{t('sortPopular')}</option>
+                <option value="recent">{t('sortRecent')}</option>
+                <option value="rating">{t('sortRating')}</option>
               </select>
             </div>
             
@@ -130,9 +157,9 @@ export default function CategoryPage() {
               </div>
             ) : (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-                <p className="text-gray-500 dark:text-gray-400 mb-4">该分类暂无 Skills</p>
+                <p className="text-gray-500 dark:text-gray-400 mb-4">{t('noSkills')}</p>
                 <Link href="/submit" className="text-blue-600 hover:text-blue-700">
-                  提交第一个 Skill →
+                  {t('submitFirst')}
                 </Link>
               </div>
             )}
@@ -143,7 +170,7 @@ export default function CategoryPage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm">
-          © 2026 SkillHub. Built for the AI Agent community.
+          {tFooter('copyright')}
         </div>
       </footer>
     </div>

@@ -3,13 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SkillHub - AI Agent Skills Marketplace",
-  description: "一键为你的 AI Agent 添加新能力 — 搜索、安装、开始使用",
+  description: "Add new capabilities to your AI Agent with one click",
   keywords: ["AI Agent", "Skills", "OpenClaw", "Marketplace", "Automation"],
-  openGraph: {
-    title: "SkillHub - AI Agent Skills Marketplace",
-    description: "一键为你的 AI Agent 添加新能力",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
@@ -18,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         {children}
       </body>

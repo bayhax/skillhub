@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Skill } from '@/types/skill';
 
 interface SkillCardProps {
@@ -8,6 +9,8 @@ interface SkillCardProps {
 }
 
 export function SkillCard({ skill }: SkillCardProps) {
+  const t = useTranslations('skill');
+  
   return (
     <Link href={`/skills/${skill.slug}`}>
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 h-full flex flex-col">
@@ -17,7 +20,7 @@ export function SkillCard({ skill }: SkillCardProps) {
           </h3>
           {skill.featured && (
             <span className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-2 py-1 rounded-full">
-              🔥 热门
+              {t('featured')}
             </span>
           )}
         </div>

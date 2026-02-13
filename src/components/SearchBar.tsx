@@ -8,7 +8,7 @@ interface SearchBarProps {
   defaultValue?: string;
 }
 
-export function SearchBar({ placeholder = '搜索 Skills...', defaultValue = '' }: SearchBarProps) {
+export function SearchBar({ placeholder = 'Search Skills...', defaultValue = '' }: SearchBarProps) {
   const [query, setQuery] = useState(defaultValue);
   const router = useRouter();
 
