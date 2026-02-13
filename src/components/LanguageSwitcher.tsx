@@ -11,7 +11,7 @@ export function LanguageSwitcher() {
 
   const switchLocale = (newLocale: Locale) => {
     // Remove current locale prefix if present
-    const pathWithoutLocale = pathname.replace(/^\/(en|zh)/, '') || '/';
+    let pathWithoutLocale = pathname.replace(/^\/(en|zh)/, '') || '/';
     
     // Navigate to new locale
     if (newLocale === 'en') {
@@ -22,19 +22,21 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-1 text-sm">
-      {locales.map((loc) => (
-        <button
-          key={loc}
-          onClick={() => switchLocale(loc)}
-          className={`px-2 py-1 rounded transition ${
-            locale === loc
-              ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-medium'
-              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-          }`}
-        >
-          {localeNames[loc]}
-        </button>
+    <div className="flex items-center gap-1 text-xs">
+      {locales.map((loc, i) => (
+        <span key={loc} className="flex items-center">
+          {i > 0 && <span className="mx-1 text-gray-300 dark:text-gray-600">/</span>}
+          <button
+            onClick={() => switchLocale(loc)}
+            className={`transition ${
+              locale === loc
+                ? 'text-blue-600 dark:text-blue-400 font-medium'
+                : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+            }`}
+          >
+            {localeNames[loc]}
+          </button>
+        </span>
       ))}
     </div>
   );
