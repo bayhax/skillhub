@@ -1,24 +1,24 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { locales, localeNames, Locale } from '@/i18n/config';
+import Link from 'next/link';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
 
-  const switchLocale = (newLocale: Locale) => {
+  const getLocalePath = (newLocale: Locale) => {
     // Remove current locale prefix if present
-    let pathWithoutLocale = pathname.replace(/^\/(en|zh)/, '') || '/';
+    const pathWithoutLocale = pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/';
     
-    // Navigate to new locale
+    // For default locale (en), don't add prefix
     if (newLocale === 'en') {
-      router.push(pathWithoutLocale);
-    } else {
-      router.push(`/${newLocale}${pathWithoutLocale}`);
+      return pathWithoutLocale || '/';
     }
+    // For other locales, add prefix
+    return `/${newLocale}${pathWithoutLocale}`;
   };
 
   return (
@@ -26,8 +26,8 @@ export function LanguageSwitcher() {
       {locales.map((loc, i) => (
         <span key={loc} className="flex items-center">
           {i > 0 && <span className="mx-1 text-gray-300 dark:text-gray-600">/</span>}
-          <button
-            onClick={() => switchLocale(loc)}
+          <Link
+            href={getLocalePath(loc)}
             className={`transition ${
               locale === loc
                 ? 'text-blue-600 dark:text-blue-400 font-medium'
@@ -35,7 +35,7 @@ export function LanguageSwitcher() {
             }`}
           >
             {localeNames[loc]}
-          </button>
+          </Link>
         </span>
       ))}
     </div>

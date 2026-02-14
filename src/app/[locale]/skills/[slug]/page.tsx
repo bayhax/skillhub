@@ -144,11 +144,36 @@ export default function SkillDetailPage() {
               </p>
             </div>
 
+            {/* How to Use */}
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
+              <h2 className="font-semibold text-gray-900 dark:text-white mb-3">
+                {t('howToUse')}
+              </h2>
+              <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <li className="flex gap-2">
+                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">1</span>
+                  <span>{t('step1')}</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">2</span>
+                  <span>{t('step2')}</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">3</span>
+                  <span>{t('step3')}</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">4</span>
+                  <span>{t('step4')}</span>
+                </li>
+              </ol>
+            </div>
+
             {/* Requirements */}
             {skill.requires && (skill.requires.env || skill.requires.tools || skill.requires.platform || skill.requires.auth || skill.requires.config || skill.requires.note) && (
               <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800 p-5">
                 <h2 className="font-semibold text-amber-800 dark:text-amber-200 mb-3 flex items-center gap-2">
-                  <span>⚠️</span>
+                  <span>⚙️</span>
                   {t('requirements')}
                 </h2>
                 <div className="space-y-3 text-sm">
@@ -214,31 +239,6 @@ export default function SkillDetailPage() {
                 </div>
               </div>
             )}
-
-            {/* How to Use */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
-              <h2 className="font-semibold text-gray-900 dark:text-white mb-3">
-                {t('howToUse')}
-              </h2>
-              <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">1</span>
-                  <span>{t('step1')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">2</span>
-                  <span>{t('step2')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">3</span>
-                  <span>{t('step3')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">4</span>
-                  <span>{t('step4')}</span>
-                </li>
-              </ol>
-            </div>
           </div>
 
           {/* Sidebar */}
