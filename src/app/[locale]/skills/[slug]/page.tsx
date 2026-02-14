@@ -35,13 +35,13 @@ export default function SkillDetailPage() {
 
   if (!skill) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-950">
+      <div className="min-h-screen bg-[#09090b]">
         <Header />
         <div className="flex items-center justify-center py-32">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
-            <p className="text-gray-500 mb-6">Skill {tCommon('notFound')}</p>
-            <Link href="/" className="text-blue-600 hover:text-blue-700">
+            <h1 className="text-6xl font-bold text-white mb-4">404</h1>
+            <p className="text-[#71717a] mb-6">Skill {tCommon('notFound')}</p>
+            <Link href="/" className="text-[#6366f1] hover:text-[#818cf8] transition">
               {tCommon('backHome')}
             </Link>
           </div>
@@ -69,20 +69,20 @@ export default function SkillDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-[#09090b]">
       <Header />
 
       {/* Breadcrumb */}
-      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
-        <div className="max-w-5xl mx-auto px-4 py-3">
-          <nav className="text-xs text-gray-400">
-            <Link href="/" className="hover:text-gray-600">Home</Link>
+      <div className="border-b border-[#18181b]">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <nav className="text-sm text-[#52525b]">
+            <Link href="/" className="hover:text-[#a1a1aa] transition">Home</Link>
             <span className="mx-2">›</span>
-            <Link href="/skills" className="hover:text-gray-600">Skills</Link>
+            <Link href="/skills" className="hover:text-[#a1a1aa] transition">Skills</Link>
             {category && (
               <>
                 <span className="mx-2">›</span>
-                <Link href={`/categories/${category.slug}`} className="hover:text-gray-600">
+                <Link href={`/categories/${category.slug}`} className="hover:text-[#a1a1aa] transition">
                   {tCat(slugToKey[category.slug] || category.slug)}
                 </Link>
               </>
@@ -91,27 +91,32 @@ export default function SkillDetailPage() {
         </div>
       </div>
 
-      <main className="max-w-5xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <main className="max-w-6xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-6">
             {/* Title Card */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-6">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h1 className="text-2xl font-bold text-white">
                   {skill.name}
                 </h1>
                 {skill.featured && (
-                  <span className="flex-shrink-0 text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 rounded">
-                    {t('featured')}
+                  <span className="flex-shrink-0 text-xs px-3 py-1 gradient-bg text-white rounded-full font-medium">
+                    HOT
                   </span>
                 )}
               </div>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-[#a1a1aa] mb-5 leading-relaxed">
                 {skill.description}
               </p>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-                <span>⭐ {skill.rating.toFixed(1)}</span>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-[#71717a]">
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  {skill.rating.toFixed(1)}
+                </span>
                 <span>•</span>
                 <span>{skill.installCount.toLocaleString()} {t('installs')}</span>
                 <span>•</span>
@@ -120,69 +125,63 @@ export default function SkillDetailPage() {
             </div>
 
             {/* Install Card */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
-              <h2 className="font-semibold text-gray-900 dark:text-white mb-3">
+            <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-6">
+              <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="text-lg">📋</span>
                 {t('installCommand')}
               </h2>
-              <div className="bg-gray-900 dark:bg-gray-950 rounded-lg p-3 mb-3 overflow-x-auto">
-                <code className="text-green-400 text-sm whitespace-nowrap">
+              <div className="bg-[#0f0f11] rounded-xl p-4 mb-4 overflow-x-auto border border-[#27272a]">
+                <code className="text-[#22c55e] text-sm font-mono">
                   {installCommand}
                 </code>
               </div>
               <button
                 onClick={handleCopy}
-                className={`w-full py-2.5 rounded-lg font-medium text-sm transition ${
+                className={`w-full py-3 rounded-xl font-medium text-sm transition ${
                   copied 
-                    ? 'bg-green-600 text-white' 
-                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                    ? 'bg-[#22c55e] text-white' 
+                    : 'btn-primary text-white'
                 }`}
               >
                 {copied ? `✓ ${tCommon('copied')}` : t('copyCommand')}
               </button>
-              <p className="text-xs text-gray-400 mt-2 text-center">
+              <p className="text-xs text-[#52525b] mt-3 text-center">
                 {t('sendToAgent')}
               </p>
             </div>
 
             {/* How to Use */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
-              <h2 className="font-semibold text-gray-900 dark:text-white mb-3">
+            <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-6">
+              <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="text-lg">🚀</span>
                 {t('howToUse')}
               </h2>
-              <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">1</span>
-                  <span>{t('step1')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">2</span>
-                  <span>{t('step2')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">3</span>
-                  <span>{t('step3')}</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded text-xs flex items-center justify-center font-medium">4</span>
-                  <span>{t('step4')}</span>
-                </li>
+              <ol className="space-y-3 text-sm text-[#a1a1aa]">
+                {[t('step1'), t('step2'), t('step3'), t('step4')].map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="flex-shrink-0 w-6 h-6 gradient-bg text-white rounded-lg text-xs flex items-center justify-center font-medium">
+                      {i + 1}
+                    </span>
+                    <span className="pt-0.5">{step}</span>
+                  </li>
+                ))}
               </ol>
             </div>
 
             {/* Requirements */}
             {skill.requires && (skill.requires.env || skill.requires.tools || skill.requires.platform || skill.requires.auth || skill.requires.config || skill.requires.note) && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800 p-5">
-                <h2 className="font-semibold text-amber-800 dark:text-amber-200 mb-3 flex items-center gap-2">
-                  <span>⚙️</span>
+              <div className="bg-[#18181b] rounded-2xl border border-[#f59e0b]/30 p-6">
+                <h2 className="font-semibold text-[#f59e0b] mb-4 flex items-center gap-2">
+                  <span className="text-lg">⚙️</span>
                   {t('requirements')}
                 </h2>
-                <div className="space-y-3 text-sm">
+                <div className="space-y-4 text-sm">
                   {skill.requires.env && skill.requires.env.length > 0 && (
                     <div>
-                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqEnv')}:</span>
-                      <div className="mt-1 flex flex-wrap gap-1.5">
+                      <span className="font-medium text-[#a1a1aa]">{t('reqEnv')}:</span>
+                      <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.env.map(env => (
-                          <code key={env} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                          <code key={env} className="px-3 py-1 bg-[#27272a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {env}
                           </code>
                         ))}
@@ -191,20 +190,23 @@ export default function SkillDetailPage() {
                   )}
                   {skill.requires.auth && skill.requires.auth.length > 0 && (
                     <div>
-                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqAuth')}:</span>
-                      <ul className="mt-1 list-disc list-inside text-amber-700 dark:text-amber-300">
+                      <span className="font-medium text-[#a1a1aa]">{t('reqAuth')}:</span>
+                      <ul className="mt-2 space-y-1 text-[#a1a1aa]">
                         {skill.requires.auth.map(auth => (
-                          <li key={auth}>{auth}</li>
+                          <li key={auth} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]" />
+                            {auth}
+                          </li>
                         ))}
                       </ul>
                     </div>
                   )}
                   {skill.requires.tools && skill.requires.tools.length > 0 && (
                     <div>
-                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqTools')}:</span>
-                      <div className="mt-1 flex flex-wrap gap-1.5">
+                      <span className="font-medium text-[#a1a1aa]">{t('reqTools')}:</span>
+                      <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.tools.map(tool => (
-                          <code key={tool} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                          <code key={tool} className="px-3 py-1 bg-[#27272a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {tool}
                           </code>
                         ))}
@@ -213,10 +215,10 @@ export default function SkillDetailPage() {
                   )}
                   {skill.requires.config && skill.requires.config.length > 0 && (
                     <div>
-                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqConfig')}:</span>
-                      <div className="mt-1 flex flex-wrap gap-1.5">
+                      <span className="font-medium text-[#a1a1aa]">{t('reqConfig')}:</span>
+                      <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.config.map(cfg => (
-                          <code key={cfg} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                          <code key={cfg} className="px-3 py-1 bg-[#27272a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {cfg}
                           </code>
                         ))}
@@ -225,15 +227,15 @@ export default function SkillDetailPage() {
                   )}
                   {skill.requires.platform && skill.requires.platform.length > 0 && (
                     <div>
-                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqPlatform')}:</span>
-                      <span className="ml-2 text-amber-700 dark:text-amber-300">
+                      <span className="font-medium text-[#a1a1aa]">{t('reqPlatform')}:</span>
+                      <span className="ml-2 text-[#a1a1aa]">
                         {skill.requires.platform.join(', ')}
                       </span>
                     </div>
                   )}
                   {skill.requires.note && (
-                    <div className="pt-2 border-t border-amber-200 dark:border-amber-800">
-                      <p className="text-amber-700 dark:text-amber-300 italic">{skill.requires.note}</p>
+                    <div className="pt-3 border-t border-[#27272a]">
+                      <p className="text-[#a1a1aa] italic">{skill.requires.note}</p>
                     </div>
                   )}
                 </div>
@@ -242,55 +244,57 @@ export default function SkillDetailPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {/* Links */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-4">
-              <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3">{t('links')}</h3>
-              <div className="space-y-2 text-sm">
+            <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-5">
+              <h3 className="font-semibold text-sm text-white mb-4">{t('links')}</h3>
+              <div className="space-y-3">
                 {skill.githubUrl && (
                   <a 
                     href={skill.githubUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition"
+                    className="flex items-center gap-3 text-[#a1a1aa] hover:text-white transition text-sm"
                   >
-                    📦 GitHub
+                    <span className="w-8 h-8 rounded-lg bg-[#27272a] flex items-center justify-center">📦</span>
+                    GitHub
                   </a>
                 )}
                 <a 
                   href={skill.skillUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition"
+                  className="flex items-center gap-3 text-[#a1a1aa] hover:text-white transition text-sm"
                 >
-                  📄 SKILL.md
+                  <span className="w-8 h-8 rounded-lg bg-[#27272a] flex items-center justify-center">📄</span>
+                  SKILL.md
                 </a>
               </div>
             </div>
 
             {/* Category */}
             {category && (
-              <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-4">
-                <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3">{t('category')}</h3>
+              <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-5">
+                <h3 className="font-semibold text-sm text-white mb-4">{t('category')}</h3>
                 <Link 
                   href={`/categories/${category.slug}`}
-                  className="flex items-center gap-2 p-2 -m-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                  className="flex items-center gap-3 p-3 -m-3 rounded-xl hover:bg-[#27272a] transition"
                 >
-                  <span className="text-xl">{category.icon}</span>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">{tCat(slugToKey[category.slug] || category.slug)}</span>
+                  <span className="text-2xl">{category.icon}</span>
+                  <span className="text-sm text-[#a1a1aa]">{tCat(slugToKey[category.slug] || category.slug)}</span>
                 </Link>
               </div>
             )}
 
             {/* Tags */}
             {skill.tags.length > 0 && (
-              <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-4">
-                <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3">Tags</h3>
-                <div className="flex flex-wrap gap-1.5">
+              <div className="bg-[#18181b] rounded-2xl border border-[#27272a] p-5">
+                <h3 className="font-semibold text-sm text-white mb-4">Tags</h3>
+                <div className="flex flex-wrap gap-2">
                   {skill.tags.map(tag => (
                     <span 
                       key={tag}
-                      className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded"
+                      className="text-xs px-3 py-1.5 bg-[#27272a] text-[#71717a] rounded-lg"
                     >
                       {tag}
                     </span>
@@ -303,8 +307,8 @@ export default function SkillDetailPage() {
 
         {/* Related Skills */}
         {relatedSkills.length > 0 && (
-          <section className="mt-8">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <section className="mt-12">
+            <h2 className="text-xl font-bold text-white mb-6">
               {t('relatedSkills')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

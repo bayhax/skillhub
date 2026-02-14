@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { SkillCard } from '@/components/SkillCard';
 import { SearchBar } from '@/components/SearchBar';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WebsiteJsonLd, ItemListJsonLd } from '@/components/JsonLd';
@@ -44,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-[#09090b]">
       <WebsiteJsonLd
         url={siteUrl}
         name="SkillHub - AI Agent Skills Marketplace"
@@ -61,31 +60,40 @@ export default function Home() {
       />
       <Header />
 
-      {/* Hero - Cleaner */}
-      <section className="bg-gradient-to-b from-blue-600 to-blue-700 text-white">
-        <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-            {t('title')}
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6366f1]/10 via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 blur-3xl rounded-full" />
+        
+        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-32 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18181b] border border-[#27272a] text-xs text-[#a1a1aa] mb-6">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            {skills.length}+ Skills Available
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="text-white">Supercharge Your </span>
+            <span className="gradient-text">AI Agent</span>
           </h1>
-          <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          
+          <p className="text-lg md:text-xl text-[#a1a1aa] mb-10 max-w-2xl mx-auto leading-relaxed">
             {t('subtitle')}
           </p>
+          
           <div className="max-w-xl mx-auto">
             <SearchBar placeholder={t('searchPlaceholder')} />
           </div>
-          <p className="mt-4 text-blue-200 text-sm">
-            {t('skillsCount', { count: skills.length })} · {t('fromCommunity')}
-          </p>
         </div>
       </section>
 
-      {/* Categories - Horizontal scroll on mobile */}
-      <section className="py-12 border-b border-gray-100 dark:border-gray-800">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('browseCategories')}</h2>
+      {/* Categories */}
+      <section className="py-16 border-t border-[#18181b]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white">{t('browseCategories')}</h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible scrollbar-hide">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {categories.map(cat => {
               const key = slugToKey[cat.slug] || cat.slug;
               const count = skills.filter(s => s.category === cat.slug).length;
@@ -93,11 +101,15 @@ export default function Home() {
                 <Link 
                   key={cat.id} 
                   href={`/categories/${cat.slug}`}
-                  className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 transition"
+                  className="group flex flex-col items-center gap-3 p-5 bg-[#18181b] hover:bg-[#27272a] border border-[#27272a] hover:border-[#3f3f46] rounded-xl transition-all"
                 >
-                  <span>{cat.icon}</span>
-                  <span>{tCat(key)}</span>
-                  <span className="text-gray-400 dark:text-gray-500">({count})</span>
+                  <span className="text-2xl">{cat.icon}</span>
+                  <div className="text-center">
+                    <span className="block text-sm font-medium text-white group-hover:text-white">
+                      {tCat(key)}
+                    </span>
+                    <span className="text-xs text-[#71717a]">{count} skills</span>
+                  </div>
                 </Link>
               );
             })}
@@ -106,15 +118,21 @@ export default function Home() {
       </section>
 
       {/* Featured Skills */}
-      <section className="py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('featuredSkills')}</h2>
-            <Link href="/skills?filter=featured" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-white">{t('featuredSkills')}</h2>
+              <p className="text-[#71717a] text-sm mt-1">Hand-picked by our team</p>
+            </div>
+            <Link 
+              href="/skills?filter=featured" 
+              className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition"
+            >
               {tCommon('viewAll')}
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {featuredSkills.map(skill => (
               <SkillCard key={skill.id} skill={skill} />
             ))}
@@ -123,15 +141,21 @@ export default function Home() {
       </section>
 
       {/* Popular Skills */}
-      <section className="py-12 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('popularSkills')}</h2>
-            <Link href="/skills?sort=popular" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+      <section className="py-16 bg-[#0f0f11]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-white">{t('popularSkills')}</h2>
+              <p className="text-[#71717a] text-sm mt-1">Most installed this month</p>
+            </div>
+            <Link 
+              href="/skills?sort=popular" 
+              className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition"
+            >
               {tCommon('viewAll')}
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {popularSkills.map(skill => (
               <SkillCard key={skill.id} skill={skill} />
             ))}
@@ -139,50 +163,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it works - Simplified */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-10">
-            {t('howToUse')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
-                🔍
+      {/* How it works */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-white mb-3">{t('howToUse')}</h2>
+            <p className="text-[#71717a]">Get started in seconds</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-8 bg-[#18181b] rounded-2xl border border-[#27272a]">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
+                <span className="text-2xl">🔍</span>
               </div>
-              <h3 className="font-semibold mb-1 text-gray-900 dark:text-white">{t('step1Title')}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t('step1Desc')}</p>
+              <h3 className="font-semibold text-lg text-white mb-2">{t('step1Title')}</h3>
+              <p className="text-sm text-[#a1a1aa] leading-relaxed">{t('step1Desc')}</p>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
-                📋
+            <div className="text-center p-8 bg-[#18181b] rounded-2xl border border-[#27272a]">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
+                <span className="text-2xl">📋</span>
               </div>
-              <h3 className="font-semibold mb-1 text-gray-900 dark:text-white">{t('step2Title')}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t('step2Desc')}</p>
+              <h3 className="font-semibold text-lg text-white mb-2">{t('step2Title')}</h3>
+              <p className="text-sm text-[#a1a1aa] leading-relaxed">{t('step2Desc')}</p>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
-                ✨
+            <div className="text-center p-8 bg-[#18181b] rounded-2xl border border-[#27272a]">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
+                <span className="text-2xl">✨</span>
               </div>
-              <h3 className="font-semibold mb-1 text-gray-900 dark:text-white">{t('step3Title')}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t('step3Desc')}</p>
+              <h3 className="font-semibold text-lg text-white mb-2">{t('step3Title')}</h3>
+              <p className="text-sm text-[#a1a1aa] leading-relaxed">{t('step3Desc')}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10" />
+        <div className="relative max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             {t('ctaTitle')}
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">
+          <p className="text-[#a1a1aa] mb-8 max-w-lg mx-auto">
             {t('ctaDesc')}
           </p>
           <Link 
             href="/submit"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium transition text-sm"
+            className="inline-block btn-primary text-white px-8 py-3.5 rounded-xl font-medium text-base"
           >
             {t('ctaButton')}
           </Link>

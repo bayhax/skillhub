@@ -7,22 +7,41 @@ export function Footer() {
   const t = useTranslations('footer');
 
   return (
-    <footer className="bg-gray-900 text-gray-400 py-8">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-lg">🛠️</span>
-            <span className="font-bold text-white">SkillHub</span>
+    <footer className="bg-[#09090b] border-t border-[#27272a] py-12">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+              <span className="text-white text-sm font-bold">S</span>
+            </div>
+            <span className="font-semibold text-white">SkillHub</span>
           </div>
-          <div className="flex items-center gap-6 text-sm">
-            <Link href="/about" className="hover:text-white transition">{t('about')}</Link>
-            <Link href="/docs" className="hover:text-white transition">{t('docs')}</Link>
-            <a href="https://github.com/bayhax/skillhub" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+          <div className="flex items-center gap-8 text-sm">
+            <Link href="/skills" className="text-[#71717a] hover:text-white transition">
+              Skills
+            </Link>
+            <Link href="/submit" className="text-[#71717a] hover:text-white transition">
+              Submit
+            </Link>
+            <a 
+              href="https://github.com/bayhax/skillhub" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[#71717a] hover:text-white transition"
+            >
               GitHub
+            </a>
+            <a 
+              href="https://docs.openclaw.ai" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[#71717a] hover:text-white transition"
+            >
+              Docs
             </a>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-800 text-center text-xs">
+        <div className="mt-8 pt-8 border-t border-[#18181b] text-center text-xs text-[#52525b]">
           {t('copyright')}
         </div>
       </div>

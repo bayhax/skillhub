@@ -18,10 +18,10 @@ export function LanguageSwitcher() {
     <select
       value={locale}
       onChange={handleChange}
-      className="text-xs bg-transparent border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer"
+      className="text-xs bg-[#18181b] border border-[#27272a] rounded-lg px-3 py-1.5 text-[#a1a1aa] hover:border-[#3f3f46] hover:text-white focus:outline-none focus:border-[#6366f1] cursor-pointer transition"
     >
       {locales.map((loc) => (
-        <option key={loc} value={loc}>
+        <option key={loc} value={loc} className="bg-[#18181b]">
           {localeNames[loc]}
         </option>
       ))}
