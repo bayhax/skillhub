@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b]">
+    <div className="min-h-screen bg-[#09090b] flex flex-col">
       <WebsiteJsonLd
         url={siteUrl}
         name="SkillHub - AI Agent Skills Marketplace"
@@ -60,6 +60,7 @@ export default function Home() {
       />
       <Header />
 
+      <main className="flex-1">
       {/* Hero */}
       <section className="relative overflow-hidden">
         {/* Background gradient */}
@@ -214,6 +215,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

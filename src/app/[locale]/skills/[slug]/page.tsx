@@ -69,9 +69,10 @@ export default function SkillDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b]">
+    <div className="min-h-screen bg-[#09090b] flex flex-col">
       <Header />
 
+      <div className="flex-1 flex flex-col">
       {/* Breadcrumb */}
       <div className="border-b border-[#18181b]">
         <div className="max-w-6xl mx-auto px-6 py-4">
@@ -91,7 +92,8 @@ export default function SkillDetailPage() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="flex-1 w-full">
+        <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
@@ -318,7 +320,9 @@ export default function SkillDetailPage() {
             </div>
           </section>
         )}
+        </div>
       </main>
+      </div>
 
       <Footer />
     </div>

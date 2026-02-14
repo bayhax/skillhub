@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { categories } from '@/data/categories';
@@ -62,7 +63,6 @@ export default function SubmitPage() {
     e.preventDefault();
     
     if (validateForm()) {
-      // MVP: Just log and show success
       console.log('Submitted skill:', formData);
       setSubmitted(true);
     }
@@ -71,7 +71,6 @@ export default function SubmitPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -79,44 +78,44 @@ export default function SubmitPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-950">
+      <div className="min-h-screen bg-[#09090b] flex flex-col">
         <Header />
-        <main className="max-w-2xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center mx-auto mb-6">
+        <main className="flex-1 flex items-center justify-center px-6 py-16">
+          <div className="text-center max-w-md">
+            <div className="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">🎉</span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h1 className="text-3xl font-bold text-white mb-4">
               {t('success.title')}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-[#a1a1aa] mb-8">
               {t('success.message')}
             </p>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 text-left">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">{t('success.submitted')}</h3>
-              <dl className="space-y-2 text-sm">
+            <div className="bg-[#18181b] rounded-xl border border-[#27272a] p-6 text-left">
+              <h3 className="font-semibold text-white mb-4">{t('success.submitted')}</h3>
+              <dl className="space-y-3 text-sm">
                 <div className="flex">
-                  <dt className="text-gray-500 dark:text-gray-400 w-24">{t('form.name')}</dt>
-                  <dd className="text-gray-900 dark:text-white">{formData.name}</dd>
+                  <dt className="text-[#71717a] w-24">{t('form.name')}</dt>
+                  <dd className="text-white">{formData.name}</dd>
                 </div>
                 <div className="flex">
-                  <dt className="text-gray-500 dark:text-gray-400 w-24">{t('form.author')}</dt>
-                  <dd className="text-gray-900 dark:text-white">{formData.author}</dd>
+                  <dt className="text-[#71717a] w-24">{t('form.author')}</dt>
+                  <dd className="text-white">{formData.author}</dd>
                 </div>
                 <div className="flex">
-                  <dt className="text-gray-500 dark:text-gray-400 w-24">{t('form.category')}</dt>
-                  <dd className="text-gray-900 dark:text-white">
+                  <dt className="text-[#71717a] w-24">{t('form.category')}</dt>
+                  <dd className="text-white">
                     {tCat(slugToKey[formData.category] || formData.category)}
                   </dd>
                 </div>
               </dl>
             </div>
-            <a
+            <Link
               href="/"
-              className="inline-block mt-8 text-blue-600 hover:text-blue-700 font-medium"
+              className="inline-block mt-8 text-[#6366f1] hover:text-[#818cf8] font-medium transition"
             >
               ← {t('success.backHome')}
-            </a>
+            </Link>
           </div>
         </main>
         <Footer />
@@ -125,16 +124,16 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-[#09090b] flex flex-col">
       <Header />
       
-      <main className="max-w-2xl mx-auto px-4 py-12">
+      <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-3xl font-bold text-white mb-3">
             {t('title')}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-[#a1a1aa]">
             {t('subtitle')}
           </p>
         </div>
@@ -143,8 +142,8 @@ export default function SubmitPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Skill Name */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('form.name')} <span className="text-red-500">*</span>
+            <label htmlFor="name" className="block text-sm font-medium text-[#a1a1aa] mb-2">
+              {t('form.name')} <span className="text-[#ef4444]">*</span>
             </label>
             <input
               type="text"
@@ -153,19 +152,19 @@ export default function SubmitPage() {
               value={formData.name}
               onChange={handleChange}
               placeholder={t('form.namePlaceholder')}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-xl border ${
                 errors.name 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-200 dark:border-gray-700 focus:ring-blue-500'
-              } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2`}
+                  ? 'border-[#ef4444] focus:border-[#ef4444]' 
+                  : 'border-[#27272a] focus:border-[#6366f1]'
+              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
-            {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+            {errors.name && <p className="mt-2 text-sm text-[#ef4444]">{errors.name}</p>}
           </div>
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('form.description')} <span className="text-red-500">*</span>
+            <label htmlFor="description" className="block text-sm font-medium text-[#a1a1aa] mb-2">
+              {t('form.description')} <span className="text-[#ef4444]">*</span>
             </label>
             <textarea
               id="description"
@@ -174,48 +173,48 @@ export default function SubmitPage() {
               onChange={handleChange}
               rows={4}
               placeholder={t('form.descriptionPlaceholder')}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-xl border ${
                 errors.description 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-200 dark:border-gray-700 focus:ring-blue-500'
-              } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 resize-none`}
+                  ? 'border-[#ef4444] focus:border-[#ef4444]' 
+                  : 'border-[#27272a] focus:border-[#6366f1]'
+              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition resize-none`}
             />
-            {errors.description && <p className="mt-1 text-sm text-red-500">{errors.description}</p>}
+            {errors.description && <p className="mt-2 text-sm text-[#ef4444]">{errors.description}</p>}
           </div>
 
           {/* Category */}
           <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('form.category')} <span className="text-red-500">*</span>
+            <label htmlFor="category" className="block text-sm font-medium text-[#a1a1aa] mb-2">
+              {t('form.category')} <span className="text-[#ef4444]">*</span>
             </label>
             <select
               id="category"
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-xl border ${
                 errors.category 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-200 dark:border-gray-700 focus:ring-blue-500'
-              } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2`}
+                  ? 'border-[#ef4444] focus:border-[#ef4444]' 
+                  : 'border-[#27272a] focus:border-[#6366f1]'
+              } bg-[#18181b] text-white focus:outline-none transition cursor-pointer`}
             >
-              <option value="">{t('form.categoryPlaceholder')}</option>
+              <option value="" className="bg-[#18181b]">{t('form.categoryPlaceholder')}</option>
               {categories.map(cat => {
                 const key = slugToKey[cat.slug] || cat.slug;
                 return (
-                  <option key={cat.id} value={cat.slug}>
+                  <option key={cat.id} value={cat.slug} className="bg-[#18181b]">
                     {cat.icon} {tCat(key)}
                   </option>
                 );
               })}
             </select>
-            {errors.category && <p className="mt-1 text-sm text-red-500">{errors.category}</p>}
+            {errors.category && <p className="mt-2 text-sm text-[#ef4444]">{errors.category}</p>}
           </div>
 
           {/* GitHub URL */}
           <div>
-            <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('form.githubUrl')} <span className="text-red-500">*</span>
+            <label htmlFor="githubUrl" className="block text-sm font-medium text-[#a1a1aa] mb-2">
+              {t('form.githubUrl')} <span className="text-[#ef4444]">*</span>
             </label>
             <input
               type="url"
@@ -224,19 +223,19 @@ export default function SubmitPage() {
               value={formData.githubUrl}
               onChange={handleChange}
               placeholder={t('form.githubPlaceholder')}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-xl border ${
                 errors.githubUrl 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-200 dark:border-gray-700 focus:ring-blue-500'
-              } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2`}
+                  ? 'border-[#ef4444] focus:border-[#ef4444]' 
+                  : 'border-[#27272a] focus:border-[#6366f1]'
+              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
-            {errors.githubUrl && <p className="mt-1 text-sm text-red-500">{errors.githubUrl}</p>}
+            {errors.githubUrl && <p className="mt-2 text-sm text-[#ef4444]">{errors.githubUrl}</p>}
           </div>
 
           {/* Author */}
           <div>
-            <label htmlFor="author" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('form.author')} <span className="text-red-500">*</span>
+            <label htmlFor="author" className="block text-sm font-medium text-[#a1a1aa] mb-2">
+              {t('form.author')} <span className="text-[#ef4444]">*</span>
             </label>
             <input
               type="text"
@@ -245,25 +244,25 @@ export default function SubmitPage() {
               value={formData.author}
               onChange={handleChange}
               placeholder={t('form.authorPlaceholder')}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-xl border ${
                 errors.author 
-                  ? 'border-red-500 focus:ring-red-500' 
-                  : 'border-gray-200 dark:border-gray-700 focus:ring-blue-500'
-              } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2`}
+                  ? 'border-[#ef4444] focus:border-[#ef4444]' 
+                  : 'border-[#27272a] focus:border-[#6366f1]'
+              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
-            {errors.author && <p className="mt-1 text-sm text-red-500">{errors.author}</p>}
+            {errors.author && <p className="mt-2 text-sm text-[#ef4444]">{errors.author}</p>}
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition"
+            className="w-full btn-primary text-white font-medium py-3.5 px-6 rounded-xl transition"
           >
             {t('form.submit')}
           </button>
 
           {/* Note */}
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-center text-sm text-[#52525b]">
             {t('form.note')}
           </p>
         </form>

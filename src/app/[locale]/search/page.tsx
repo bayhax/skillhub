@@ -19,50 +19,52 @@ function SearchContent() {
   const tHome = useTranslations('home');
 
   return (
-    <>
+    <div className="flex-1">
       {/* Page Header */}
-      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 py-8">
-        <div className="max-w-5xl mx-auto px-4">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+      <div className="border-b border-[#18181b] py-10">
+        <div className="max-w-6xl mx-auto px-6">
+          <h1 className="text-3xl font-bold text-white mb-6">
             {t('title')}
           </h1>
-          <SearchBar placeholder={tHome('searchPlaceholder')} defaultValue={query} />
+          <div className="max-w-xl">
+            <SearchBar placeholder={tHome('searchPlaceholder')} defaultValue={query} />
+          </div>
         </div>
       </div>
 
-      <main className="max-w-5xl mx-auto px-4 py-6">
+      <main className="max-w-6xl mx-auto px-6 py-8">
         {query ? (
           <>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-[#71717a] mb-6">
               {t('found', { count: results.length, query })}
             </p>
             
             {results.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {results.map(skill => (
                   <SkillCard key={skill.id} skill={skill} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
-                <p className="text-gray-500 mb-2">{t('noResults')}</p>
-                <p className="text-sm text-gray-400 mb-4">{t('tryOther')}</p>
-                <Link href="/skills" className="text-blue-600 hover:text-blue-700 text-sm">
+              <div className="text-center py-16 bg-[#18181b] rounded-2xl border border-[#27272a]">
+                <p className="text-[#a1a1aa] mb-2">{t('noResults')}</p>
+                <p className="text-sm text-[#52525b] mb-6">{t('tryOther')}</p>
+                <Link href="/skills" className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition">
                   {t('browseAll')}
                 </Link>
               </div>
             )}
           </>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-500 mb-4">{t('enterKeyword')}</p>
-            <Link href="/skills" className="text-blue-600 hover:text-blue-700 text-sm">
+          <div className="text-center py-16">
+            <p className="text-[#a1a1aa] mb-6">{t('enterKeyword')}</p>
+            <Link href="/skills" className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition">
               {t('browseAll')}
             </Link>
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }
 
@@ -70,10 +72,10 @@ export default function SearchPage() {
   const tCommon = useTranslations('common');
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-[#09090b] flex flex-col">
       <Header />
       <Suspense fallback={
-        <div className="py-20 text-center text-gray-500">{tCommon('loading')}</div>
+        <div className="flex-1 flex items-center justify-center text-[#71717a]">{tCommon('loading')}</div>
       }>
         <SearchContent />
       </Suspense>

@@ -36,13 +36,13 @@ export default function CategoryPage() {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-950">
+      <div className="min-h-screen bg-[#09090b] flex flex-col">
         <Header />
-        <div className="flex items-center justify-center py-32">
+        <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
-            <p className="text-gray-500 mb-6">Category {tCommon('notFound')}</p>
-            <Link href="/" className="text-blue-600 hover:text-blue-700">
+            <h1 className="text-6xl font-bold text-white mb-4">404</h1>
+            <p className="text-[#71717a] mb-6">Category {tCommon('notFound')}</p>
+            <Link href="/" className="text-[#6366f1] hover:text-[#818cf8] transition">
               {tCommon('backHome')}
             </Link>
           </div>
@@ -55,119 +55,123 @@ export default function CategoryPage() {
   const catKey = slugToKey[category.slug] || category.slug;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-[#09090b] flex flex-col">
       <Header />
 
-      {/* Page Header */}
-      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 py-8">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-3xl">{category.icon}</span>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {tCat(catKey)}
-              </h1>
-              <p className="text-sm text-gray-500">{tCat(`${catKey}Desc`)}</p>
+      <div className="flex-1">
+        {/* Page Header */}
+        <div className="border-b border-[#18181b] py-10">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-[#18181b] rounded-xl flex items-center justify-center text-3xl border border-[#27272a]">
+                {category.icon}
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-white">
+                  {tCat(catKey)}
+                </h1>
+                <p className="text-sm text-[#71717a] mt-1">{tCat(`${catKey}Desc`)}</p>
+              </div>
+            </div>
+            <div className="max-w-xl">
+              <SearchBar placeholder={tHome('searchPlaceholder')} />
             </div>
           </div>
-          <SearchBar placeholder={tHome('searchPlaceholder')} />
         </div>
-      </div>
 
-      <main className="max-w-5xl mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* Sidebar */}
-          <aside className="lg:w-56 flex-shrink-0">
-            {/* Mobile: Horizontal scroll */}
-            <div className="lg:hidden flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-              <Link 
-                href="/skills"
-                className="flex-shrink-0 px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm rounded-full border border-gray-200 dark:border-gray-700"
-              >
-                {t('all')} ({skills.length})
-              </Link>
-              {categories.map(cat => {
-                const count = skills.filter(s => s.category === cat.slug).length;
-                const key = slugToKey[cat.slug] || cat.slug;
-                const isActive = cat.slug === slug;
-                return (
-                  <Link 
-                    key={cat.id}
-                    href={`/categories/${cat.slug}`}
-                    className={`flex-shrink-0 px-3 py-1.5 text-sm rounded-full ${
-                      isActive 
-                        ? 'bg-blue-600 text-white' 
-                        : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
-                    }`}
-                  >
-                    {cat.icon} {tCat(key)} ({count})
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Desktop: Vertical list */}
-            <div className="hidden lg:block sticky top-20 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-3">
-              <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3 px-2">{t('filterByCategory')}</h3>
-              <ul className="space-y-0.5">
-                <li>
-                  <Link 
-                    href="/skills"
-                    className="flex items-center justify-between px-2 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm transition"
-                  >
-                    <span>{t('all')}</span>
-                    <span className="text-gray-400">{skills.length}</span>
-                  </Link>
-                </li>
+        <main className="max-w-6xl mx-auto px-6 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar */}
+            <aside className="lg:w-56 flex-shrink-0">
+              {/* Mobile: Horizontal scroll */}
+              <div className="lg:hidden flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
+                <Link 
+                  href="/skills"
+                  className="flex-shrink-0 px-4 py-2 bg-[#18181b] text-[#a1a1aa] text-sm rounded-full border border-[#27272a]"
+                >
+                  {t('all')}
+                </Link>
                 {categories.map(cat => {
-                  const count = skills.filter(s => s.category === cat.slug).length;
                   const key = slugToKey[cat.slug] || cat.slug;
                   const isActive = cat.slug === slug;
                   return (
-                    <li key={cat.id}>
+                    <Link 
+                      key={cat.id}
+                      href={`/categories/${cat.slug}`}
+                      className={`flex-shrink-0 px-4 py-2 text-sm rounded-full transition ${
+                        isActive 
+                          ? 'gradient-bg text-white font-medium' 
+                          : 'bg-[#18181b] text-[#a1a1aa] border border-[#27272a] hover:text-white'
+                      }`}
+                    >
+                      {cat.icon} {tCat(key)}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Desktop: Vertical list */}
+              <div className="hidden lg:block sticky top-20">
+                <h3 className="text-xs font-semibold text-[#71717a] uppercase tracking-wider mb-4">
+                  {t('filterByCategory')}
+                </h3>
+                <div className="space-y-1">
+                  <Link 
+                    href="/skills"
+                    className="flex items-center justify-between px-4 py-2.5 text-[#a1a1aa] hover:text-white hover:bg-[#18181b] text-sm rounded-lg transition"
+                  >
+                    <span>{t('all')}</span>
+                    <span className="text-[#52525b]">{skills.length}</span>
+                  </Link>
+                  {categories.map(cat => {
+                    const count = skills.filter(s => s.category === cat.slug).length;
+                    const key = slugToKey[cat.slug] || cat.slug;
+                    const isActive = cat.slug === slug;
+                    return (
                       <Link 
+                        key={cat.id}
                         href={`/categories/${cat.slug}`}
-                        className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm transition ${
+                        className={`flex items-center justify-between px-4 py-2.5 text-sm rounded-lg transition ${
                           isActive 
-                            ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' 
-                            : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400'
+                            ? 'gradient-bg text-white font-medium' 
+                            : 'text-[#a1a1aa] hover:text-white hover:bg-[#18181b]'
                         }`}
                       >
                         <span>{cat.icon} {tCat(key)}</span>
-                        <span className={isActive ? '' : 'text-gray-400'}>{count}</span>
+                        <span className={isActive ? 'text-white/70' : 'text-[#52525b]'}>{count}</span>
                       </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </aside>
+                    );
+                  })}
+                </div>
+              </div>
+            </aside>
 
-          {/* Main Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t('totalSkills', { count: categorySkills.length })}
-              </p>
+            {/* Main Content */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-sm text-[#71717a]">
+                  {t('totalSkills', { count: categorySkills.length })}
+                </p>
+              </div>
+              
+              {categorySkills.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {categorySkills.map(skill => (
+                    <SkillCard key={skill.id} skill={skill} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-16 bg-[#18181b] rounded-2xl border border-[#27272a]">
+                  <p className="text-[#a1a1aa] mb-4">{t('noSkills')}</p>
+                  <Link href="/submit" className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition">
+                    {t('submitFirst')}
+                  </Link>
+                </div>
+              )}
             </div>
-            
-            {categorySkills.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {categorySkills.map(skill => (
-                  <SkillCard key={skill.id} skill={skill} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
-                <p className="text-gray-500 mb-4">{t('noSkills')}</p>
-                <Link href="/submit" className="text-blue-600 hover:text-blue-700 text-sm">
-                  {t('submitFirst')}
-                </Link>
-              </div>
-            )}
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
 
       <Footer />
     </div>
