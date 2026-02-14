@@ -35,7 +35,7 @@ export default function SkillDetailPage() {
 
   if (!skill) {
     return (
-      <div className="min-h-screen bg-[#111114]">
+      <div className="min-h-screen bg-[#13131a]">
         <Header />
         <div className="flex items-center justify-center py-32">
           <div className="text-center">
@@ -69,12 +69,12 @@ export default function SkillDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#111114] flex flex-col">
+    <div className="min-h-screen bg-[#13131a] flex flex-col">
       <Header />
 
       <div className="flex-1 flex flex-col">
       {/* Breadcrumb */}
-      <div className="border-b border-[#1a1a1f]">
+      <div className="border-b border-[#1c1c24]">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <nav className="text-sm text-[#52525b]">
             <Link href="/" className="hover:text-[#a1a1aa] transition">Home</Link>
@@ -98,7 +98,7 @@ export default function SkillDetailPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Title Card */}
-            <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-6">
+            <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-6">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <h1 className="text-2xl font-bold text-white">
                   {skill.name}
@@ -127,12 +127,12 @@ export default function SkillDetailPage() {
             </div>
 
             {/* Install Card */}
-            <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-6">
+            <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-6">
               <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
                 <span className="text-lg">📋</span>
                 {t('installCommand')}
               </h2>
-              <div className="bg-[#0f0f11] rounded-xl p-4 mb-4 overflow-x-auto border border-[#2a2a35]">
+              <div className="bg-[#0f0f11] rounded-xl p-4 mb-4 overflow-x-auto border border-[#2d2d3a]">
                 <code className="text-[#22c55e] text-sm font-mono">
                   {installCommand}
                 </code>
@@ -153,7 +153,7 @@ export default function SkillDetailPage() {
             </div>
 
             {/* How to Use */}
-            <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-6">
+            <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-6">
               <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
                 <span className="text-lg">🚀</span>
                 {t('howToUse')}
@@ -172,7 +172,7 @@ export default function SkillDetailPage() {
 
             {/* Requirements */}
             {skill.requires && (skill.requires.env || skill.requires.tools || skill.requires.platform || skill.requires.auth || skill.requires.config || skill.requires.note) && (
-              <div className="bg-[#1a1a1f] rounded-2xl border border-[#f59e0b]/30 p-6">
+              <div className="bg-[#1c1c24] rounded-2xl border border-[#f59e0b]/30 p-6">
                 <h2 className="font-semibold text-[#f59e0b] mb-4 flex items-center gap-2">
                   <span className="text-lg">⚙️</span>
                   {t('requirements')}
@@ -183,7 +183,7 @@ export default function SkillDetailPage() {
                       <span className="font-medium text-[#a1a1aa]">{t('reqEnv')}:</span>
                       <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.env.map(env => (
-                          <code key={env} className="px-3 py-1 bg-[#2a2a35] text-[#f59e0b] rounded-lg text-xs font-mono">
+                          <code key={env} className="px-3 py-1 bg-[#2d2d3a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {env}
                           </code>
                         ))}
@@ -208,7 +208,7 @@ export default function SkillDetailPage() {
                       <span className="font-medium text-[#a1a1aa]">{t('reqTools')}:</span>
                       <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.tools.map(tool => (
-                          <code key={tool} className="px-3 py-1 bg-[#2a2a35] text-[#f59e0b] rounded-lg text-xs font-mono">
+                          <code key={tool} className="px-3 py-1 bg-[#2d2d3a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {tool}
                           </code>
                         ))}
@@ -220,7 +220,7 @@ export default function SkillDetailPage() {
                       <span className="font-medium text-[#a1a1aa]">{t('reqConfig')}:</span>
                       <div className="mt-2 flex flex-wrap gap-2">
                         {skill.requires.config.map(cfg => (
-                          <code key={cfg} className="px-3 py-1 bg-[#2a2a35] text-[#f59e0b] rounded-lg text-xs font-mono">
+                          <code key={cfg} className="px-3 py-1 bg-[#2d2d3a] text-[#f59e0b] rounded-lg text-xs font-mono">
                             {cfg}
                           </code>
                         ))}
@@ -236,7 +236,7 @@ export default function SkillDetailPage() {
                     </div>
                   )}
                   {skill.requires.note && (
-                    <div className="pt-3 border-t border-[#2a2a35]">
+                    <div className="pt-3 border-t border-[#2d2d3a]">
                       <p className="text-[#a1a1aa] italic">{skill.requires.note}</p>
                     </div>
                   )}
@@ -248,7 +248,7 @@ export default function SkillDetailPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Links */}
-            <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-5">
+            <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-5">
               <h3 className="font-semibold text-sm text-white mb-4">{t('links')}</h3>
               <div className="space-y-3">
                 {skill.githubUrl && (
@@ -258,7 +258,7 @@ export default function SkillDetailPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-[#a1a1aa] hover:text-white transition text-sm"
                   >
-                    <span className="w-8 h-8 rounded-lg bg-[#2a2a35] flex items-center justify-center">📦</span>
+                    <span className="w-8 h-8 rounded-lg bg-[#2d2d3a] flex items-center justify-center">📦</span>
                     GitHub
                   </a>
                 )}
@@ -268,7 +268,7 @@ export default function SkillDetailPage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-[#a1a1aa] hover:text-white transition text-sm"
                 >
-                  <span className="w-8 h-8 rounded-lg bg-[#2a2a35] flex items-center justify-center">📄</span>
+                  <span className="w-8 h-8 rounded-lg bg-[#2d2d3a] flex items-center justify-center">📄</span>
                   SKILL.md
                 </a>
               </div>
@@ -276,11 +276,11 @@ export default function SkillDetailPage() {
 
             {/* Category */}
             {category && (
-              <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-5">
+              <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-5">
                 <h3 className="font-semibold text-sm text-white mb-4">{t('category')}</h3>
                 <Link 
                   href={`/categories/${category.slug}`}
-                  className="flex items-center gap-3 p-3 -m-3 rounded-xl hover:bg-[#2a2a35] transition"
+                  className="flex items-center gap-3 p-3 -m-3 rounded-xl hover:bg-[#2d2d3a] transition"
                 >
                   <span className="text-2xl">{category.icon}</span>
                   <span className="text-sm text-[#a1a1aa]">{tCat(slugToKey[category.slug] || category.slug)}</span>
@@ -290,13 +290,13 @@ export default function SkillDetailPage() {
 
             {/* Tags */}
             {skill.tags.length > 0 && (
-              <div className="bg-[#1a1a1f] rounded-2xl border border-[#2a2a35] p-5">
+              <div className="bg-[#1c1c24] rounded-2xl border border-[#2d2d3a] p-5">
                 <h3 className="font-semibold text-sm text-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {skill.tags.map(tag => (
                     <span 
                       key={tag}
-                      className="text-xs px-3 py-1.5 bg-[#2a2a35] text-[#71717a] rounded-lg"
+                      className="text-xs px-3 py-1.5 bg-[#2d2d3a] text-[#71717a] rounded-lg"
                     >
                       {tag}
                     </span>

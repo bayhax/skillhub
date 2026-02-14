@@ -26,12 +26,12 @@ export default function SkillsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#111114] flex flex-col">
+    <div className="min-h-screen bg-[#13131a] flex flex-col">
       <Header />
 
       <div className="flex-1">
         {/* Page Header */}
-        <div className="border-b border-[#1a1a1f] py-10">
+        <div className="border-b border-[#1c1c24] py-10">
           <div className="max-w-6xl mx-auto px-6">
             <h1 className="text-3xl font-bold text-white mb-6">
               {t('title')}
@@ -60,7 +60,7 @@ export default function SkillsPage() {
                     <Link 
                       key={cat.id}
                       href={`/categories/${cat.slug}`}
-                      className="flex-shrink-0 px-4 py-2 bg-[#1a1a1f] text-[#a1a1aa] hover:text-white text-sm rounded-full transition"
+                      className="flex-shrink-0 px-4 py-2 bg-[#1c1c24] text-[#a1a1aa] hover:text-white text-sm rounded-full transition"
                     >
                       {cat.icon} {tCat(key)}
                     </Link>
@@ -87,7 +87,7 @@ export default function SkillsPage() {
                       <Link 
                         key={cat.id}
                         href={`/categories/${cat.slug}`}
-                        className="flex items-center justify-between px-4 py-2.5 text-[#a1a1aa] hover:text-white hover:bg-[#1a1a1f] text-sm rounded-lg transition"
+                        className="flex items-center justify-between px-4 py-2.5 text-[#a1a1aa] hover:text-white hover:bg-[#1c1c24] text-sm rounded-lg transition"
                       >
                         <span>{cat.icon} {tCat(key)}</span>
                         <span className="text-[#52525b]">{count}</span>

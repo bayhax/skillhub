@@ -29,11 +29,11 @@ export function SearchBar({ placeholder = 'Search Skills...', defaultValue = '' 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={placeholder}
-            className="w-full px-5 py-4 pr-14 text-base rounded-xl border border-[#2a2a35] bg-[#1a1a1f] text-white placeholder-[#71717a] focus:outline-none focus:border-[#6366f1] transition"
+            className="w-full px-5 py-4 pr-14 text-base rounded-xl border border-[#2d2d3a] bg-[#1c1c24] text-white placeholder-[#71717a] focus:outline-none focus:border-[#6366f1] transition"
           />
           <button 
             type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 text-[#71717a] hover:text-white bg-[#2a2a35] hover:bg-[#3a3a45] rounded-lg transition"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 text-[#71717a] hover:text-white bg-[#2d2d3a] hover:bg-[#3d3d4a] rounded-lg transition"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

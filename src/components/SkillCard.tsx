@@ -13,7 +13,7 @@ export function SkillCard({ skill }: SkillCardProps) {
   
   return (
     <Link href={`/skills/${skill.slug}`}>
-      <div className="bg-[#1a1a1f] rounded-xl border border-[#2a2a35] p-5 card-hover h-full flex flex-col">
+      <div className="bg-[#1c1c24] rounded-xl border border-[#2d2d3a] p-5 card-hover h-full flex flex-col">
         <div className="flex items-start justify-between gap-3 mb-3">
           <h3 className="font-semibold text-white line-clamp-1 text-[15px]">
             {skill.name}

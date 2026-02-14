@@ -36,7 +36,7 @@ export default function CategoryPage() {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-[#111114] flex flex-col">
+      <div className="min-h-screen bg-[#13131a] flex flex-col">
         <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
@@ -55,15 +55,15 @@ export default function CategoryPage() {
   const catKey = slugToKey[category.slug] || category.slug;
 
   return (
-    <div className="min-h-screen bg-[#111114] flex flex-col">
+    <div className="min-h-screen bg-[#13131a] flex flex-col">
       <Header />
 
       <div className="flex-1">
         {/* Page Header */}
-        <div className="border-b border-[#1a1a1f] py-10">
+        <div className="border-b border-[#1c1c24] py-10">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 bg-[#1a1a1f] rounded-xl flex items-center justify-center text-3xl border border-[#2a2a35]">
+              <div className="w-14 h-14 bg-[#1c1c24] rounded-xl flex items-center justify-center text-3xl border border-[#2d2d3a]">
                 {category.icon}
               </div>
               <div>
@@ -87,7 +87,7 @@ export default function CategoryPage() {
               <div className="lg:hidden flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
                 <Link 
                   href="/skills"
-                  className="flex-shrink-0 px-4 py-2 bg-[#1a1a1f] text-[#a1a1aa] text-sm rounded-full border border-[#2a2a35]"
+                  className="flex-shrink-0 px-4 py-2 bg-[#1c1c24] text-[#a1a1aa] text-sm rounded-full border border-[#2d2d3a]"
                 >
                   {t('all')}
                 </Link>
@@ -101,7 +101,7 @@ export default function CategoryPage() {
                       className={`flex-shrink-0 px-4 py-2 text-sm rounded-full transition ${
                         isActive 
                           ? 'gradient-bg text-white font-medium' 
-                          : 'bg-[#1a1a1f] text-[#a1a1aa] border border-[#2a2a35] hover:text-white'
+                          : 'bg-[#1c1c24] text-[#a1a1aa] border border-[#2d2d3a] hover:text-white'
                       }`}
                     >
                       {cat.icon} {tCat(key)}
@@ -118,7 +118,7 @@ export default function CategoryPage() {
                 <div className="space-y-1">
                   <Link 
                     href="/skills"
-                    className="flex items-center justify-between px-4 py-2.5 text-[#a1a1aa] hover:text-white hover:bg-[#1a1a1f] text-sm rounded-lg transition"
+                    className="flex items-center justify-between px-4 py-2.5 text-[#a1a1aa] hover:text-white hover:bg-[#1c1c24] text-sm rounded-lg transition"
                   >
                     <span>{t('all')}</span>
                     <span className="text-[#52525b]">{skills.length}</span>
@@ -134,7 +134,7 @@ export default function CategoryPage() {
                         className={`flex items-center justify-between px-4 py-2.5 text-sm rounded-lg transition ${
                           isActive 
                             ? 'gradient-bg text-white font-medium' 
-                            : 'text-[#a1a1aa] hover:text-white hover:bg-[#1a1a1f]'
+                            : 'text-[#a1a1aa] hover:text-white hover:bg-[#1c1c24]'
                         }`}
                       >
                         <span>{cat.icon} {tCat(key)}</span>
@@ -161,7 +161,7 @@ export default function CategoryPage() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 bg-[#1a1a1f] rounded-2xl border border-[#2a2a35]">
+                <div className="text-center py-16 bg-[#1c1c24] rounded-2xl border border-[#2d2d3a]">
                   <p className="text-[#a1a1aa] mb-4">{t('noSkills')}</p>
                   <Link href="/submit" className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition">
                     {t('submitFirst')}

@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#111114] flex flex-col">
+    <div className="min-h-screen bg-[#13131a] flex flex-col">
       <WebsiteJsonLd
         url={siteUrl}
         name="SkillHub - AI Agent Skills Marketplace"
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 blur-3xl rounded-full" />
         
         <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-32 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1a1a1f] border border-[#2a2a35] text-xs text-[#a1a1aa] mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c1c24] border border-[#2d2d3a] text-xs text-[#a1a1aa] mb-6">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             {skills.length}+ Skills Available
           </div>
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="py-16 border-t border-[#1a1a1f]">
+      <section className="py-16 border-t border-[#1c1c24]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-white">{t('browseCategories')}</h2>
@@ -102,7 +102,7 @@ export default function Home() {
                 <Link 
                   key={cat.id} 
                   href={`/categories/${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-5 bg-[#1a1a1f] hover:bg-[#2a2a35] border border-[#2a2a35] hover:border-[#3a3a45] rounded-xl transition-all"
+                  className="group flex flex-col items-center gap-3 p-5 bg-[#1c1c24] hover:bg-[#2d2d3a] border border-[#2d2d3a] hover:border-[#3d3d4a] rounded-xl transition-all"
                 >
                   <span className="text-2xl">{cat.icon}</span>
                   <div className="text-center">
@@ -172,21 +172,21 @@ export default function Home() {
             <p className="text-[#71717a]">Get started in seconds</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-8 bg-[#1a1a1f] rounded-2xl border border-[#2a2a35]">
+            <div className="text-center p-8 bg-[#1c1c24] rounded-2xl border border-[#2d2d3a]">
               <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
                 <span className="text-2xl">🔍</span>
               </div>
               <h3 className="font-semibold text-lg text-white mb-2">{t('step1Title')}</h3>
               <p className="text-sm text-[#a1a1aa] leading-relaxed">{t('step1Desc')}</p>
             </div>
-            <div className="text-center p-8 bg-[#1a1a1f] rounded-2xl border border-[#2a2a35]">
+            <div className="text-center p-8 bg-[#1c1c24] rounded-2xl border border-[#2d2d3a]">
               <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
                 <span className="text-2xl">📋</span>
               </div>
               <h3 className="font-semibold text-lg text-white mb-2">{t('step2Title')}</h3>
               <p className="text-sm text-[#a1a1aa] leading-relaxed">{t('step2Desc')}</p>
             </div>
-            <div className="text-center p-8 bg-[#1a1a1f] rounded-2xl border border-[#2a2a35]">
+            <div className="text-center p-8 bg-[#1c1c24] rounded-2xl border border-[#2d2d3a]">
               <div className="w-14 h-14 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center mx-auto mb-5">
                 <span className="text-2xl">✨</span>
               </div>
