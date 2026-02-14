@@ -58,7 +58,13 @@
     "githubRepo": "📦 GitHub Repository",
     "sourceFile": "📄 SKILL.md Source",
     "category": "Category",
-    "relatedSkills": "Related Skills"
+    "relatedSkills": "Related Skills",
+    "requirements": "Requirements Before Install",
+    "reqEnv": "Environment Variables",
+    "reqAuth": "Account/Auth Required",
+    "reqTools": "CLI Tools Required",
+    "reqConfig": "Config Files",
+    "reqPlatform": "Supported Platforms"
   },
   "skills": {
     "title": "Browse All Skills",

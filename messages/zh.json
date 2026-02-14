@@ -58,7 +58,13 @@
     "githubRepo": "📦 GitHub 仓库",
     "sourceFile": "📄 SKILL.md 源文件",
     "category": "分类",
-    "relatedSkills": "相关 Skills"
+    "relatedSkills": "相关 Skills",
+    "requirements": "安装前准备",
+    "reqEnv": "环境变量",
+    "reqAuth": "需要账号/授权",
+    "reqTools": "命令行工具",
+    "reqConfig": "配置文件",
+    "reqPlatform": "支持平台"
   },
   "skills": {
     "title": "浏览所有 Skills",

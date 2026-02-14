@@ -144,6 +144,77 @@ export default function SkillDetailPage() {
               </p>
             </div>
 
+            {/* Requirements */}
+            {skill.requires && (skill.requires.env || skill.requires.tools || skill.requires.platform || skill.requires.auth || skill.requires.config || skill.requires.note) && (
+              <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800 p-5">
+                <h2 className="font-semibold text-amber-800 dark:text-amber-200 mb-3 flex items-center gap-2">
+                  <span>⚠️</span>
+                  {t('requirements')}
+                </h2>
+                <div className="space-y-3 text-sm">
+                  {skill.requires.env && skill.requires.env.length > 0 && (
+                    <div>
+                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqEnv')}:</span>
+                      <div className="mt-1 flex flex-wrap gap-1.5">
+                        {skill.requires.env.map(env => (
+                          <code key={env} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                            {env}
+                          </code>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {skill.requires.auth && skill.requires.auth.length > 0 && (
+                    <div>
+                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqAuth')}:</span>
+                      <ul className="mt-1 list-disc list-inside text-amber-700 dark:text-amber-300">
+                        {skill.requires.auth.map(auth => (
+                          <li key={auth}>{auth}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {skill.requires.tools && skill.requires.tools.length > 0 && (
+                    <div>
+                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqTools')}:</span>
+                      <div className="mt-1 flex flex-wrap gap-1.5">
+                        {skill.requires.tools.map(tool => (
+                          <code key={tool} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                            {tool}
+                          </code>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {skill.requires.config && skill.requires.config.length > 0 && (
+                    <div>
+                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqConfig')}:</span>
+                      <div className="mt-1 flex flex-wrap gap-1.5">
+                        {skill.requires.config.map(cfg => (
+                          <code key={cfg} className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 rounded text-xs font-mono">
+                            {cfg}
+                          </code>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {skill.requires.platform && skill.requires.platform.length > 0 && (
+                    <div>
+                      <span className="font-medium text-amber-700 dark:text-amber-300">{t('reqPlatform')}:</span>
+                      <span className="ml-2 text-amber-700 dark:text-amber-300">
+                        {skill.requires.platform.join(', ')}
+                      </span>
+                    </div>
+                  )}
+                  {skill.requires.note && (
+                    <div className="pt-2 border-t border-amber-200 dark:border-amber-800">
+                      <p className="text-amber-700 dark:text-amber-300 italic">{skill.requires.note}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* How to Use */}
             <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5">
               <h2 className="font-semibold text-gray-900 dark:text-white mb-3">

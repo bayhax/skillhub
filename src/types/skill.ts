@@ -1,3 +1,12 @@
+export interface SkillRequirements {
+  env?: string[];           // 需要的环境变量，如 ['NOTION_API_KEY', 'OPENAI_API_KEY']
+  tools?: string[];         // 需要的命令行工具，如 ['ffmpeg', 'imagemagick']
+  platform?: string[];      // 支持的平台，如 ['macos', 'linux', 'windows']
+  auth?: string[];          // 需要的认证/账号，如 ['GitHub account', 'Notion integration']
+  config?: string[];        // 需要的配置文件，如 ['~/.config/notion/api_key']
+  note?: string;            // 额外说明
+}
+
 export interface Skill {
   id: string;
   slug: string;
@@ -15,6 +24,7 @@ export interface Skill {
   ratingCount: number;
   platform: 'openclaw' | 'claude' | 'universal';
   featured?: boolean;
+  requires?: SkillRequirements;  // 安装/使用需求
   createdAt: string;
   updatedAt: string;
 }
