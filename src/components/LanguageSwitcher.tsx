@@ -2,30 +2,29 @@
 
 import { useLocale } from 'next-intl';
 import { locales, localeNames, Locale } from '@/i18n/config';
-import { Link, usePathname } from '@/i18n/navigation';
+import { usePathname, useRouter } from '@/i18n/navigation';
 
 export function LanguageSwitcher() {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = e.target.value as Locale;
+    router.replace(pathname, { locale: newLocale });
+  };
 
   return (
-    <div className="flex items-center gap-1 text-xs">
-      {locales.map((loc, i) => (
-        <span key={loc} className="flex items-center">
-          {i > 0 && <span className="mx-1 text-gray-300 dark:text-gray-600">/</span>}
-          <Link
-            href={pathname}
-            locale={loc}
-            className={`transition ${
-              locale === loc
-                ? 'text-blue-600 dark:text-blue-400 font-medium'
-                : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
-            }`}
-          >
-            {localeNames[loc]}
-          </Link>
-        </span>
+    <select
+      value={locale}
+      onChange={handleChange}
+      className="text-xs bg-transparent border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer"
+    >
+      {locales.map((loc) => (
+        <option key={loc} value={loc}>
+          {localeNames[loc]}
+        </option>
       ))}
-    </div>
+    </select>
   );
 }
