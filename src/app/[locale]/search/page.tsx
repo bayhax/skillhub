@@ -21,7 +21,7 @@ function SearchContent() {
   return (
     <div className="flex-1">
       {/* Page Header */}
-      <div className="border-b border-[#18181b] py-10">
+      <div className="border-b border-[#1a1a1f] py-10">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-3xl font-bold text-white mb-6">
             {t('title')}
@@ -46,7 +46,7 @@ function SearchContent() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 bg-[#18181b] rounded-2xl border border-[#27272a]">
+              <div className="text-center py-16 bg-[#1a1a1f] rounded-2xl border border-[#2a2a35]">
                 <p className="text-[#a1a1aa] mb-2">{t('noResults')}</p>
                 <p className="text-sm text-[#52525b] mb-6">{t('tryOther')}</p>
                 <Link href="/skills" className="text-[#6366f1] hover:text-[#818cf8] text-sm font-medium transition">
@@ -72,7 +72,7 @@ export default function SearchPage() {
   const tCommon = useTranslations('common');
   
   return (
-    <div className="min-h-screen bg-[#09090b] flex flex-col">
+    <div className="min-h-screen bg-[#111114] flex flex-col">
       <Header />
       <Suspense fallback={
         <div className="flex-1 flex items-center justify-center text-[#71717a]">{tCommon('loading')}</div>

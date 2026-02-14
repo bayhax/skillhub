@@ -78,7 +78,7 @@ export default function SubmitPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#09090b] flex flex-col">
+      <div className="min-h-screen bg-[#111114] flex flex-col">
         <Header />
         <main className="flex-1 flex items-center justify-center px-6 py-16">
           <div className="text-center max-w-md">
@@ -91,7 +91,7 @@ export default function SubmitPage() {
             <p className="text-[#a1a1aa] mb-8">
               {t('success.message')}
             </p>
-            <div className="bg-[#18181b] rounded-xl border border-[#27272a] p-6 text-left">
+            <div className="bg-[#1a1a1f] rounded-xl border border-[#2a2a35] p-6 text-left">
               <h3 className="font-semibold text-white mb-4">{t('success.submitted')}</h3>
               <dl className="space-y-3 text-sm">
                 <div className="flex">
@@ -124,7 +124,7 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#09090b] flex flex-col">
+    <div className="min-h-screen bg-[#111114] flex flex-col">
       <Header />
       
       <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
@@ -155,8 +155,8 @@ export default function SubmitPage() {
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.name 
                   ? 'border-[#ef4444] focus:border-[#ef4444]' 
-                  : 'border-[#27272a] focus:border-[#6366f1]'
-              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
+                  : 'border-[#2a2a35] focus:border-[#6366f1]'
+              } bg-[#1a1a1f] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
             {errors.name && <p className="mt-2 text-sm text-[#ef4444]">{errors.name}</p>}
           </div>
@@ -176,8 +176,8 @@ export default function SubmitPage() {
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.description 
                   ? 'border-[#ef4444] focus:border-[#ef4444]' 
-                  : 'border-[#27272a] focus:border-[#6366f1]'
-              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition resize-none`}
+                  : 'border-[#2a2a35] focus:border-[#6366f1]'
+              } bg-[#1a1a1f] text-white placeholder-[#52525b] focus:outline-none transition resize-none`}
             />
             {errors.description && <p className="mt-2 text-sm text-[#ef4444]">{errors.description}</p>}
           </div>
@@ -195,14 +195,14 @@ export default function SubmitPage() {
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.category 
                   ? 'border-[#ef4444] focus:border-[#ef4444]' 
-                  : 'border-[#27272a] focus:border-[#6366f1]'
-              } bg-[#18181b] text-white focus:outline-none transition cursor-pointer`}
+                  : 'border-[#2a2a35] focus:border-[#6366f1]'
+              } bg-[#1a1a1f] text-white focus:outline-none transition cursor-pointer`}
             >
-              <option value="" className="bg-[#18181b]">{t('form.categoryPlaceholder')}</option>
+              <option value="" className="bg-[#1a1a1f]">{t('form.categoryPlaceholder')}</option>
               {categories.map(cat => {
                 const key = slugToKey[cat.slug] || cat.slug;
                 return (
-                  <option key={cat.id} value={cat.slug} className="bg-[#18181b]">
+                  <option key={cat.id} value={cat.slug} className="bg-[#1a1a1f]">
                     {cat.icon} {tCat(key)}
                   </option>
                 );
@@ -226,8 +226,8 @@ export default function SubmitPage() {
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.githubUrl 
                   ? 'border-[#ef4444] focus:border-[#ef4444]' 
-                  : 'border-[#27272a] focus:border-[#6366f1]'
-              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
+                  : 'border-[#2a2a35] focus:border-[#6366f1]'
+              } bg-[#1a1a1f] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
             {errors.githubUrl && <p className="mt-2 text-sm text-[#ef4444]">{errors.githubUrl}</p>}
           </div>
@@ -247,8 +247,8 @@ export default function SubmitPage() {
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.author 
                   ? 'border-[#ef4444] focus:border-[#ef4444]' 
-                  : 'border-[#27272a] focus:border-[#6366f1]'
-              } bg-[#18181b] text-white placeholder-[#52525b] focus:outline-none transition`}
+                  : 'border-[#2a2a35] focus:border-[#6366f1]'
+              } bg-[#1a1a1f] text-white placeholder-[#52525b] focus:outline-none transition`}
             />
             {errors.author && <p className="mt-2 text-sm text-[#ef4444]">{errors.author}</p>}
           </div>

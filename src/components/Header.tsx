@@ -10,7 +10,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#09090b]/80 backdrop-blur-xl border-b border-[#27272a] sticky top-0 z-50">
+    <header className="bg-[#111114]/80 backdrop-blur-xl border-b border-[#2a2a35] sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
@@ -55,7 +55,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-[#27272a] bg-[#09090b] px-6 py-4 space-y-4">
+        <div className="md:hidden border-t border-[#2a2a35] bg-[#111114] px-6 py-4 space-y-4">
           <Link 
             href="/skills" 
             className="block text-sm text-[#a1a1aa] hover:text-white py-2 transition"
@@ -70,7 +70,7 @@ export function Header() {
           >
             {tNav('submitSkill')}
           </Link>
-          <div className="pt-3 border-t border-[#27272a]">
+          <div className="pt-3 border-t border-[#2a2a35]">
             <LanguageSwitcher />
           </div>
         </div>
